@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Image | ImageShare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-images"></i> ImageShare
+        </div>
+        <nav>
+            <a href="index.html">Gallery</a>
+            <a href="upload.html">Upload</a>
+        </nav>
+    </header>
+
+    <main class="image-view">
+        <div class="image-container">
+            <img id="fullImage" src="https://source.unsplash.com/random/800x600?nature" alt="Nature">
+            
+            <div class="image-actions">
+                <button id="likeBtn"><i class="far fa-heart"></i> Like</button>
+                <button id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+            </div>
+        </div>
+        
+        <div class="image-details">
+            <h1 id="imageTitle">Beautiful Nature</h1>
+            <p class="upload-info">Uploaded by <span>user123</span> on <span>June 15, 2024</span></p>
+            
+            <div class="stats">
+                <span><i class="far fa-eye"></i> 1,245 views</span>
+                <span><i class="far fa-heart"></i> 42 likes</span>
+                <span><i class="fas fa-download"></i> 18 downloads</span>
+            </div>
+            
+            <p id="imageDesc">This is a beautiful nature scene captured during my hike last weekend. The colors were amazing!</p>
+            
+            <div class="tags">
+                <span>nature</span>
+                <span>landscape</span>
+                <span>outdoors</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        // In a real app, you would fetch image details based on the ID in the URL
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const imageUrl = document.getElementById('fullImage').src;
+            const a = document.createElement('a');
+            a.href = imageUrl;
+            a.download = 'image-' + new Date().getTime() + '.jpg';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            // In a real app, you would track downloads on the server
+            alert('Image downloaded!');
+        });
+        
+        document.getElementById('likeBtn').addEventListener('click', function() {
+            // In a real app, you would send this to the server
+            this.innerHTML = '<i class="fas fa-heart"></i> Liked';
+            this.style.backgroundColor = '#ff4757';
+        });
+    </script>
+</body>
+</html>
